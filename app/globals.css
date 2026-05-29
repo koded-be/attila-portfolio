@@ -1,2 +1,25 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #06FFA5;
+  --color-white: #fefefe;
+  --color-gray: #A7B4B0;
+  --color-black: #10141D;
+}
+
+:root {
+    --font-body: "Alata", sans-serif;
+    --button-gradient-from: #00FFA7;
+    --button-gradient-to: #9CFF66;
+    --button-glow: 0 0 32px rgba(0,255,167,0.35);
+    --text-glow: 0 0 8px rgba(0,255,167,0.5);
+}
+
+body {
+    background-image: url("/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    font-family: var(--font-body);
+}

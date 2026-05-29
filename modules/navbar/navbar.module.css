@@ -1,0 +1,4 @@
+.activeNavLink {
+     color: var(--color-primary);
+     text-shadow: 0 0 8px rgba(0,255,167,0.4);
+}
