@@ -40,8 +40,10 @@ export const Navbar = () => {
 
   return (
     <nav className="fixed flex w-full items-center justify-between py-6 px-20">
-      <Link href="/" className="flex items-center gap-2">
-        <Image src="/logo.svg" alt="Logo" width={50} height={50} />
+      <Link href="#home" className="flex items-center gap-2">
+        <div className="relative h-12 w-12">
+          <Image src="/logo.svg" alt="Logo" fill />
+        </div>
         <span className="text-2xl text-white">Attila Tolnai</span>
       </Link>
 
