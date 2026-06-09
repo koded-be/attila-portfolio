@@ -5,26 +5,26 @@ import Image from "next/image";
 export default function Page() {
   return (
     <>
-      <main className="flex h-screen items-center justify-center p-20">
-        <div className="flex flex-col gap-6 max-w-2xl text-center">
+      <main className="flex min-h-screen items-center justify-center p-6 sm:p-20">
+        <div className="flex w-full max-w-2xl flex-col gap-8 text-center sm:gap-10">
           <div className="flex flex-col items-center justify-center mb-4">
             <Image
               src="/logo.svg"
               alt="Attila Tolnai"
               width={80}
               height={80}
-              className="w-20 h-20"
+              className="w-16 h-16 sm:w-20 sm:h-20"
             />
-            <span className="text-sm text-primary uppercase tracking-wider">
+            <span className="mt-4 text-sm text-primary uppercase tracking-wider">
               Coming Soon
             </span>
           </div>
 
-          <h1 className="text-6xl font-bold text-white leading-tight">
+          <h1 className="text-4xl font-bold text-white leading-tight sm:text-6xl">
             Something <span className="text-primary">Amazing</span> is brewing
           </h1>
 
-          <p className="text-lg text-gray-400 max-w-xl mx-auto">
+          <p className="text-base text-gray-400 max-w-xl mx-auto sm:text-lg">
             I&apos;m working on something incredible that will showcase my
             latest 3D creations and projects. Stay tuned for the unveiling.
           </p>
