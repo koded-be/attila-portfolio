@@ -2,15 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
-import { ProjectCard } from "./project-card";
-
-type Project = {
-  id: string;
-  title: string;
-  text: string;
-  images: string[];
-  created_at: string;
-};
+import { Project, ProjectCard } from "./project-card";
 
 export const Work = () => {
   const [projects, setProjects] = useState<Project[]>([]);

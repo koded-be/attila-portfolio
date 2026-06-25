@@ -1,12 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../_common/button";
+import { Json } from "@/lib/supabase/database.types";
 
-type Project = {
+export type Project = {
   id: string;
-  title: string;
-  text: string;
-  images: string[];
+  title: string | null;
+  text: string | null;
+  images: Json;
   created_at: string;
 };
 
@@ -17,7 +18,7 @@ export function ProjectCard({
   project: Project;
   index: number;
 }) {
-  const [mainImage, ...restImages] = project.images ?? [];
+  const [mainImage, ...restImages] = (project.images as string[]) ?? [];
 
   return (
     <div
@@ -43,24 +44,24 @@ export function ProjectCard({
         {/* Image grid */}
         <div className="grid grid-cols-3 gap-4">
           {mainImage ? (
-            <div className="relative col-span-2 aspect-[16/10] overflow-hidden rounded-2xl bg-white/5">
+            <div className="relative col-span-2 aspect-16/10 overflow-hidden rounded-2xl bg-white/5">
               <Image
                 src={mainImage}
-                alt={project.title}
+                alt={project.title || "Project image"}
                 fill
                 sizes="(min-width: 1024px) 60vw, 90vw"
                 className="object-cover"
               />
             </div>
           ) : (
-            <div className="col-span-2 aspect-[16/10] rounded-2xl bg-white/5" />
+            <div className="col-span-2 aspect-16/10 rounded-2xl bg-white/5" />
           )}
 
           <div className="col-span-1 grid grid-rows-2 gap-4">
             {restImages.slice(0, 2).map((src, i) => (
               <div
                 key={src}
-                className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-white/5"
+                className="relative aspect-16/10 overflow-hidden rounded-2xl bg-white/5"
               >
                 <Image
                   src={src}
