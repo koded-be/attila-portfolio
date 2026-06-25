@@ -1,10 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import { Button } from "./_common/button";
 
 export const Home = () => {
   return (
-    <main id="home" className="flex h-screen items-center p-20">
+    <main id="home" className="flex justify-between h-screen items-center p-20">
       <div className="flex flex-col gap-4 max-w-3xl">
         <span className="text-sm text-primary uppercase">
           3D ARTIST & CREATOR
@@ -19,6 +20,9 @@ export const Home = () => {
         <div>
           <Button>View my work</Button>
         </div>
+      </div>
+      <div className="relative h-full w-1/2">
+        <Image src="/intro-img.png" alt="Hero" fill className="object-cover" />
       </div>
     </main>
   );

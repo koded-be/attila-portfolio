@@ -3,6 +3,7 @@
 import { clsx } from "clsx";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import styles from "./navbar.module.css";
 import { useActiveSection } from "./use-active-selection";
 
@@ -37,9 +38,27 @@ const NavLink = ({ name, href, activeSection }: NavLinkProps) => {
 
 export const Navbar = () => {
   const activeSection = useActiveSection();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="fixed flex w-full items-center justify-between py-6 px-20">
+    <nav
+      className={clsx(
+        "fixed flex w-full items-center justify-between px-20 z-50 transition-all duration-300",
+        isScrolled
+          ? "bg-[#0c1118]/80 backdrop-blur-md p-1"
+          : "bg-transparent py-6",
+      )}
+    >
       <Link href="#home" className="flex items-center gap-2">
         <div className="relative h-12 w-12">
           <Image src="/logo.svg" alt="Logo" fill />
