@@ -12,19 +12,19 @@ export const Contact = () => {
           <form className="flex flex-col gap-6">
             <div className="flex flex-col gap-2">
               <label htmlFor="name" className="text-sm text-white/70">
-                name
+                Name
               </label>
               <input
                 id="name"
                 type="text"
-                placeholder="Jhon Doe"
+                placeholder="John Doe"
                 className="w-full rounded-lg border border-white/15 bg-transparent px-4 py-3 text-sm text-white/90 placeholder:text-white/40 outline-none transition-colors focus:border-primary"
               />
             </div>
 
             <div className="flex flex-col gap-2">
               <label htmlFor="email" className="text-sm text-white/70">
-                email
+                Email
               </label>
               <input
                 id="email"
@@ -35,11 +35,11 @@ export const Contact = () => {
             </div>
 
             <div className="flex flex-col gap-2">
-              <label htmlFor="project" className="text-sm text-white/70">
-                please tell us more about your project
+              <label htmlFor="idea" className="text-sm text-white/70">
+                Please tell us more about your idea
               </label>
               <textarea
-                id="project"
+                id="idea"
                 placeholder="What can I do for you?"
                 rows={4}
                 className="w-full resize-none rounded-lg border border-white/15 bg-transparent px-4 py-3 text-sm text-white/90 placeholder:text-white/40 outline-none transition-colors focus:border-primary"
@@ -48,7 +48,7 @@ export const Contact = () => {
 
             <div className="flex flex-col gap-2">
               <label htmlFor="company" className="text-sm text-white/70">
-                company
+                Company
               </label>
               <input
                 id="company"
@@ -64,12 +64,12 @@ export const Contact = () => {
 
             <div className="flex flex-col gap-3 mt-2">
               <p className="text-sm text-white/40">
-                Or mail us at{" "}
+                Or mail me at{" "}
                 <a
-                  href="mailto:atilla.tolnai@gmail.com"
+                  href="mailto:attila.tolnai170@gmail.com"
                   className="text-white/70 hover:text-primary transition-colors"
                 >
-                  atilla.tolnai@gmail.com
+                  attila.tolnai170@gmail.com
                 </a>
               </p>
             </div>
