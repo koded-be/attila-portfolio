@@ -1,5 +1,94 @@
+import { Button } from "./_common/button";
+
 export const Contact = () => {
   return (
-    <section id="contact" className="flex h-screen items-center p-20"></section>
+    <section
+      id="contact"
+      className="flex items-center bg-gray-950 min-h-screen"
+    >
+      <div className="flex flex-col gap-4 p-20 w-full max-w-600 mx-auto bg-gray-900 rounded-2xl">
+        <h2 className="text-4xl text-primary uppercase mb-8">Contact Me</h2>
+        <div className="grid grid-cols-2 gap-16 w-full">
+          <form className="flex flex-col gap-6">
+            <div className="flex flex-col gap-2">
+              <label htmlFor="name" className="text-sm text-white/70">
+                name
+              </label>
+              <input
+                id="name"
+                type="text"
+                placeholder="Jhon Doe"
+                className="w-full rounded-lg border border-white/15 bg-transparent px-4 py-3 text-sm text-white/90 placeholder:text-white/40 outline-none transition-colors focus:border-primary"
+              />
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <label htmlFor="email" className="text-sm text-white/70">
+                email
+              </label>
+              <input
+                id="email"
+                type="email"
+                placeholder="example@gmail.com"
+                className="w-full rounded-lg border border-white/15 bg-transparent px-4 py-3 text-sm text-white/90 placeholder:text-white/40 outline-none transition-colors focus:border-primary"
+              />
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <label htmlFor="project" className="text-sm text-white/70">
+                please tell us more about your project
+              </label>
+              <textarea
+                id="project"
+                placeholder="What can I do for you?"
+                rows={4}
+                className="w-full resize-none rounded-lg border border-white/15 bg-transparent px-4 py-3 text-sm text-white/90 placeholder:text-white/40 outline-none transition-colors focus:border-primary"
+              />
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <label htmlFor="company" className="text-sm text-white/70">
+                company
+              </label>
+              <input
+                id="company"
+                type="text"
+                placeholder="koded."
+                className="w-full rounded-lg border border-white/15 bg-transparent px-4 py-3 text-sm text-white/90 placeholder:text-white/40 outline-none transition-colors focus:border-primary"
+              />
+            </div>
+
+            <div>
+              <Button>Contact me</Button>
+            </div>
+
+            <div className="flex flex-col gap-3 mt-2">
+              <p className="text-sm text-white/40">
+                Or mail us at{" "}
+                <a
+                  href="mailto:atilla.tolnai@gmail.com"
+                  className="text-white/70 hover:text-primary transition-colors"
+                >
+                  atilla.tolnai@gmail.com
+                </a>
+              </p>
+            </div>
+          </form>
+
+          <div className="flex flex-col gap-4">
+            <h3 className="text-sm text-white/70">Where can you find me?</h3>
+            <div className="overflow-hidden rounded-2xl border border-white/10">
+              <iframe
+                title="Location map"
+                src="https://maps.google.com/maps?q=Dendermonde&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                className="h-[50vh] w-full grayscale-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };

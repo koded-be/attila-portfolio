@@ -32,7 +32,7 @@ export const Work = () => {
   return (
     <section
       id="work"
-      className="mx-auto flex flex-col w-full max-w-7xl gap-20"
+      className="mx-auto flex flex-col w-full p-20 max-w-600 gap-20"
     >
       <div className="flex flex-col gap-4">
         <div className="flex justify-between">

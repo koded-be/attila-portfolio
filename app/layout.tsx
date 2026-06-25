@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Alata } from "next/font/google";
 import "./globals.css";
+import { SmoothScrollProvider } from "@/modules/_common/smooth-scroll";
 
 const alata = Alata({
   variable: "--font-alata",
@@ -21,7 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${alata.variable} antialiased`}>
-      <body>{children}</body>
+      <body>
+        <SmoothScrollProvider>{children}</SmoothScrollProvider>
+      </body>
     </html>
   );
 }
