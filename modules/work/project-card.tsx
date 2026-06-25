@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../_common/button";
 import { Json } from "@/lib/supabase/database.types";
+import { createClient } from "@/lib/supabase/client";
+import { ProjectImageStorage } from "../_common/project-image-storage";
 
 export type Project = {
   id: string;
@@ -11,14 +13,26 @@ export type Project = {
   created_at: string;
 };
 
-export function ProjectCard({
-  project,
-  index,
-}: {
+type ProjectCardProps = {
   project: Project;
   index: number;
-}) {
-  const [mainImage, ...restImages] = (project.images as string[]) ?? [];
+};
+
+export function ProjectCard({ project, index }: ProjectCardProps) {
+  const supabase = createClient();
+  const imageStorage = new ProjectImageStorage(supabase);
+
+  const fileNames = (project.images as string[]) ?? [];
+  const [mainFileName, ...restFileNames] = fileNames;
+
+  const mainImage = mainFileName
+    ? imageStorage.getProjectImageUrl(project.id, mainFileName)
+    : null;
+
+  const restImages = restFileNames.slice(0, 2).map((fileName) => ({
+    fileName,
+    url: imageStorage.getProjectImageUrl(project.id, fileName),
+  }));
 
   return (
     <div
@@ -58,20 +72,22 @@ export function ProjectCard({
           )}
 
           <div className="col-span-1 grid grid-rows-2 gap-4">
-            {restImages.slice(0, 2).map((src, i) => (
-              <div
-                key={src}
-                className="relative aspect-16/10 overflow-hidden rounded-2xl bg-white/5"
-              >
-                <Image
-                  src={src}
-                  alt={`${project.title} preview ${i + 2}`}
-                  fill
-                  sizes="(min-width: 1024px) 30vw, 45vw"
-                  className="object-cover"
-                />
-              </div>
-            ))}
+            {restImages.map(({ fileName, url }, i) =>
+              url ? (
+                <div
+                  key={fileName}
+                  className="relative aspect-16/10 overflow-hidden rounded-2xl bg-white/5"
+                >
+                  <Image
+                    src={url}
+                    alt={`${project.title} preview ${i + 2}`}
+                    fill
+                    sizes="(min-width: 1024px) 30vw, 45vw"
+                    className="object-cover"
+                  />
+                </div>
+              ) : null,
+            )}
           </div>
         </div>
       </div>

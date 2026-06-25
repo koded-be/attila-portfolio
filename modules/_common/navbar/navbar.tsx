@@ -36,11 +36,21 @@ const NavLink = ({ name, href, activeSection }: NavLinkProps) => {
   );
 };
 
-export const Navbar = () => {
+type NavbarProps = {
+  defaultActiveSection?: string;
+  defaultScrolled?: boolean;
+};
+
+export const Navbar = ({
+  defaultActiveSection,
+  defaultScrolled,
+}: NavbarProps) => {
   const activeSection = useActiveSection();
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(defaultScrolled ?? false);
 
   useEffect(() => {
+    if (defaultScrolled) return;
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
@@ -48,7 +58,7 @@ export const Navbar = () => {
     handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [defaultScrolled]);
 
   return (
     <nav
@@ -72,7 +82,7 @@ export const Navbar = () => {
             key={item.name}
             name={item.name}
             href={item.href}
-            activeSection={activeSection}
+            activeSection={defaultActiveSection || activeSection}
           />
         ))}
       </ul>
