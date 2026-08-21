@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Button } from "./_common/button";
 
 export const Contact = () => {
@@ -7,8 +8,17 @@ export const Contact = () => {
       className="flex items-center bg-gray-950 min-h-screen"
     >
       <div className="flex flex-col gap-4 p-20 w-full max-w-600 mx-auto bg-gray-900 rounded-2xl">
-        <h2 className="text-4xl text-primary uppercase mb-8">Contact Me</h2>
         <div className="grid grid-cols-2 gap-16 w-full">
+          <div className="flex flex-col gap-4">
+            <h2 className="text-4xl text-primary uppercase mb-8">Contact Me</h2>
+            <Image
+              src="/TilaFoto.jpg"
+              alt="Picture Attila Tolnai"
+              width={400}
+              height={400}
+              className="rounded-full"
+            />
+          </div>
           <form className="flex flex-col gap-6">
             <div className="flex flex-col gap-2">
               <label htmlFor="name" className="text-sm text-white/70">
@@ -74,19 +84,6 @@ export const Contact = () => {
               </p>
             </div>
           </form>
-
-          <div className="flex flex-col gap-4">
-            <h3 className="text-sm text-white/70">Where can you find me?</h3>
-            <div className="overflow-hidden rounded-2xl border border-white/10">
-              <iframe
-                title="Location map"
-                src="https://maps.google.com/maps?q=Dendermonde&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                className="h-[50vh] w-full grayscale-0"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
-          </div>
         </div>
       </div>
     </section>
