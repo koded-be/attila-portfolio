@@ -1,30 +1,21 @@
-"use client";
-
-import { createClient } from "@/lib/supabase/client";
-import { useEffect } from "react";
+import { eq } from "drizzle-orm";
+import { db } from "@/lib/db";
+import { projects } from "@/lib/db/schema";
 
 type ProjectDetailProps = {
   id: string;
 };
 
-export const ProjectDetail = ({ id }: ProjectDetailProps) => {
-  useEffect(() => {
-    const fetchProjectDetail = async () => {
-      const supabase = createClient();
-      const { data, error } = await supabase
-        .from("projects")
-        .select()
-        .eq("id", id)
-        .single();
-      if (error) {
-        console.error(error);
-        return;
-      }
-      console.log(data);
-    };
+export const ProjectDetail = async ({ id }: ProjectDetailProps) => {
+  const [project] = await db
+    .select()
+    .from(projects)
+    .where(eq(projects.id, id))
+    .limit(1);
 
-    fetchProjectDetail();
-  }, [id]);
+  if (!project) {
+    return <></>;
+  }
 
   return <></>;
 };

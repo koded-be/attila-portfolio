@@ -1,17 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../_common/button";
-import { Json } from "@/lib/supabase/database.types";
-import { createClient } from "@/lib/supabase/client";
-import { ProjectImageStorage } from "../_common/project-image-storage";
+import { projects } from "@/lib/db/schema";
+import { projectImageStorage } from "@/lib/storage/project-image-storage";
 
-export type Project = {
-  id: string;
-  title: string | null;
-  text: string | null;
-  images: Json;
-  created_at: string;
-};
+export type Project = typeof projects.$inferSelect;
 
 type ProjectCardProps = {
   project: Project;
@@ -19,19 +12,16 @@ type ProjectCardProps = {
 };
 
 export function ProjectCard({ project, index }: ProjectCardProps) {
-  const supabase = createClient();
-  const imageStorage = new ProjectImageStorage(supabase);
-
   const fileNames = (project.images as string[]) ?? [];
   const [mainFileName, ...restFileNames] = fileNames;
 
   const mainImage = mainFileName
-    ? imageStorage.getProjectImageUrl(project.id, mainFileName)
+    ? projectImageStorage.getProjectImageUrl(project.id, mainFileName)
     : null;
 
   const restImages = restFileNames.slice(0, 2).map((fileName) => ({
     fileName,
-    url: imageStorage.getProjectImageUrl(project.id, fileName),
+    url: projectImageStorage.getProjectImageUrl(project.id, fileName),
   }));
 
   return (

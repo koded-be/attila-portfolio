@@ -4,6 +4,8 @@ import { Contact } from "@/modules/contact";
 import { Home } from "@/modules/home";
 import { Work } from "@/modules/work/work";
 
+export const dynamic = "force-dynamic";
+
 export default function Page() {
   return (
     <>
