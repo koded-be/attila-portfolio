@@ -5,7 +5,7 @@ import {
 } from "@aws-sdk/client-s3";
 
 class ProjectImageStorage {
-  #bucket = process.env.NEON_STORAGE_BUCKET!;
+  #bucket = process.env.NEON_STORAGE_PROJECT_IMAGE_BUCKET!;
 
   #client = new S3Client({
     region: process.env.AWS_REGION,
@@ -54,7 +54,7 @@ class ProjectImageStorage {
   // Public bucket: returns an instant URL, no network request needed
   getProjectImageUrl(projectId: string, fileName: string) {
     const filePath = `${projectId}/${fileName}`;
-    return `${process.env.NEON_STORAGE_PUBLIC_URL}/${filePath}`;
+    return `${process.env.NEON_STORAGE_PUBLIC_URL}/${this.#bucket}/${filePath}`;
   }
 }
 

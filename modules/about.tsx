@@ -1,5 +1,3 @@
-"use client";
-
 export const About = () => {
   return (
     <section
@@ -45,7 +43,7 @@ export const About = () => {
                 <div className="my-4">
                   <a
                     className="text-primary underline hover:text-primary/80 transition-colors duration-300"
-                    href="/resume.pdf"
+                    href={`${process.env.NEON_STORAGE_PUBLIC_URL}/${process.env.NEON_STORAGE_VARIOUS_BUCKET}/resume.pdf`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >

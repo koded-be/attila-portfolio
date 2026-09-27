@@ -12,7 +12,7 @@ type ProjectCardProps = {
 };
 
 export function ProjectCard({ project, index }: ProjectCardProps) {
-  const fileNames = (project.images as string[]) ?? [];
+  const fileNames = project.images ?? [];
   const [mainFileName, ...restFileNames] = fileNames;
 
   const mainImage = mainFileName

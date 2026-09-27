@@ -1,0 +1,18 @@
+import { Navbar } from "@/modules/_common/navbar/navbar";
+import { Projects } from "@/modules/projects";
+
+export const dynamic = "force-dynamic";
+
+export default async function Page({ searchParams }: PageProps<"/projects">) {
+  const { q, sort } = await searchParams;
+
+  return (
+    <>
+      <Navbar defaultActiveSection="work" defaultScrolled={true} />
+      <Projects
+        q={typeof q === "string" ? q.trim() : ""}
+        sort={sort === "oldest" ? "oldest" : "newest"}
+      />
+    </>
+  );
+}
