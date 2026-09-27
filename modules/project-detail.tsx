@@ -1,8 +1,9 @@
-import { asc, eq } from "drizzle-orm";
+import { asc } from "drizzle-orm";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { db } from "@/lib/db";
+import { getProject } from "@/lib/db/projects";
 import { projects } from "@/lib/db/schema";
 import { projectImageStorage } from "@/lib/storage/project-image-storage";
 import { ImageCompare } from "./_common/image-compare";
@@ -81,11 +82,8 @@ export const ProjectDetail = async ({ id }: ProjectDetailProps) => {
     notFound();
   }
 
-  const [project] = await db
-    .select()
-    .from(projects)
-    .where(eq(projects.id, id))
-    .limit(1);
+  const project = await getProject(id);
+  if (!project) notFound();
 
   const imageUrl = (fileName: string) =>
     projectImageStorage.getProjectImageUrl(project.id, fileName);

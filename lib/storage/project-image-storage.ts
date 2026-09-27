@@ -1,5 +1,7 @@
 import {
+  DeleteObjectsCommand,
   GetObjectCommand,
+  ListObjectsV2Command,
   PutObjectCommand,
   S3Client,
 } from "@aws-sdk/client-s3";
@@ -49,6 +51,39 @@ class ProjectImageStorage {
       console.error("Error downloading project image:", error);
       return null;
     }
+  }
+
+  async deleteProjectImages(projectId: string) {
+    const { Contents } = await this.#client.send(
+      new ListObjectsV2Command({
+        Bucket: this.#bucket,
+        Prefix: `${projectId}/`,
+      }),
+    );
+    if (!Contents?.length) return;
+
+    await this.#client.send(
+      new DeleteObjectsCommand({
+        Bucket: this.#bucket,
+        Delete: { Objects: Contents.map(({ Key }) => ({ Key })) },
+      }),
+    );
+  }
+
+  async uploadResume(file: File) {
+    await this.#client.send(
+      new PutObjectCommand({
+        Bucket: process.env.NEON_STORAGE_VARIOUS_BUCKET!,
+        Key: "resume.pdf",
+        Body: new Uint8Array(await file.arrayBuffer()),
+        ContentType: "application/pdf",
+        CacheControl: "no-cache",
+      }),
+    );
+  }
+
+  getResumeUrl() {
+    return `${process.env.NEON_STORAGE_PUBLIC_URL}/${process.env.NEON_STORAGE_VARIOUS_BUCKET}/resume.pdf`;
   }
 
   // Public bucket: returns an instant URL, no network request needed

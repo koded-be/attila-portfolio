@@ -1,3 +1,5 @@
+import { projectImageStorage } from "@/lib/storage/project-image-storage";
+
 export const About = () => {
   return (
     <section
@@ -43,7 +45,7 @@ export const About = () => {
                 <div className="my-4">
                   <a
                     className="text-primary underline hover:text-primary/80 transition-colors duration-300"
-                    href={`${process.env.NEON_STORAGE_PUBLIC_URL}/${process.env.NEON_STORAGE_VARIOUS_BUCKET}/resume.pdf`}
+                    href={projectImageStorage.getResumeUrl()}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
