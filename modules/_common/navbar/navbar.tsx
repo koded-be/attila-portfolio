@@ -17,7 +17,7 @@ const navItems = [
 ];
 
 // On the home page, let Lenis smooth-scroll instead of Next's instant hash jump
-const useScrollToSection = () => {
+export const useScrollToSection = () => {
   const lenis = useLenis();
   const pathname = usePathname();
 

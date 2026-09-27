@@ -3,7 +3,6 @@ import { db } from "@/lib/db";
 import { projects } from "@/lib/db/schema";
 import { ProjectCard } from "./project-card";
 import { Button } from "../_common/button";
-import Link from "next/link";
 
 export const Work = async () => {
   const workProjects = await db
@@ -20,9 +19,7 @@ export const Work = async () => {
       <div className="flex flex-col gap-4">
         <div className="flex justify-between">
           <h2 className="text-5xl text-primary">My recent works</h2>
-          <Link href="/projects">
-            <Button>View all projects</Button>
-          </Link>
+          <Button href="/projects">View all projects</Button>
         </div>
         <p className="text-lg text-white">
           Here are some of my recent projects. Click on a project to see more

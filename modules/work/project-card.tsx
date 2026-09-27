@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { Button } from "../_common/button";
 import { projects } from "@/lib/db/schema";
 import { projectImageStorage } from "@/lib/storage/project-image-storage";
@@ -40,9 +39,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             <h2 className="text-lg font-medium text-white">{project.title}</h2>
           </div>
 
-          <Link href={`/projects/${project.id}`}>
-            <Button>See project</Button>
-          </Link>
+          <Button href={`/projects/${project.id}`}>See project</Button>
         </div>
 
         {/* Image grid */}

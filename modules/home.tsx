@@ -2,10 +2,12 @@
 
 import { useRef } from "react";
 import { Button } from "./_common/button";
+import { useScrollToSection } from "./_common/navbar/navbar";
 import { ParallaxBackground } from "./_common/parallax-background";
 
 export const Home = () => {
   const container = useRef<HTMLElement>(null);
+  const scrollToSection = useScrollToSection();
 
   return (
     <main
@@ -40,7 +42,9 @@ export const Home = () => {
             design.
           </p>
           <div>
-            <Button>View my work</Button>
+            <Button href="/#work" onClick={scrollToSection("work")}>
+              View my work
+            </Button>
           </div>
         </div>
       </div>
