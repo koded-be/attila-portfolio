@@ -10,7 +10,7 @@ type ButtonProps = {
 };
 
 const className =
-  "inline-block uppercase cursor-pointer text-black py-2 px-6 rounded-full bg-[linear-gradient(90deg,var(--button-gradient-from),var(--button-gradient-to))] shadow-(--button-glow) hover:opacity-95 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed";
+  "inline-flex items-center justify-center uppercase cursor-pointer text-black py-2 px-6 rounded-full bg-[linear-gradient(90deg,var(--button-gradient-from),var(--button-gradient-to))] shadow-(--button-glow) hover:opacity-95 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed";
 
 export const Button = ({
   children,
